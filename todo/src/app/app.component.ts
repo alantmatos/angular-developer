@@ -45,7 +45,6 @@ export class AppComponent {
   }
 
   load() {
-    const data = localStorage.getItem('todos');
     this.todos = JSON.parse(localStorage.getItem('todos') || '[]');
   }
 
