@@ -5,40 +5,58 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Todo</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
 <body>
 
-  <div>
-    <h1>
-      {{ title}}
-    </h1>
+  <div class="App-container">
 
-    <p *ngIf="todos.length == 0"> <small> You haven't added any task. </small></p>
+    <div>
+      <h1 class="title animated jackInTheBox">
+        {{ title}}
+      </h1>
 
-    <ul>
-      <li *ngFor="let todo of todos">
-        {{todo.id}}: {{todo.todo}}
-        <button (click)="remove(todo)"> Remove </button> |
-        <button *ngIf="!todo.done" (click)="markAsDone(todo)"> Done </button>
-        <button *ngIf="todo.done" (click)="markAsUndone(todo)"> Redo </button> |
-        <button (click)="rename(todo)"> Rename </button>
-      </li>
-    </ul>
+      <p *ngIf="todos.length == 0" class="animated flipInX"> <small> You haven't added any task.
+        </small>
+      </p>
+    </div>
+
+    <div class="display-container">
+      <div>
+        <form [formGroup]="form">
+          <fieldset>
+            <label>Task: </label>
+            <input type="text" placeholder="Add a new task" maxlength="20" formControlName="todo">
+            <button [disabled]="form.invalid" (click)="add()" class="save-btn"> <i class="far fa-save"></i> Save
+            </button>
+          </fieldset>
+        </form>
+
+        <p> <small *ngIf="form.controls['todo'].invalid && !form.controls['todo'].pristine" class="danger"> Length
+            should be between
+            3
+            and 20
+            characters</small>
+        </p>
+      </div>
+
+      <div>
+        <ul>
+          <li *ngFor="let todo of todos">
+            {{todo.todo}}
+            <button (click)="remove(todo)"><i class="far fa-trash-alt"></i> Del</button>
+            <button *ngIf="!todo.done" (click)="markAsDone(todo)"> <i class="far fa-check-circle"></i> Done</button>
+            <button *ngIf="todo.done" (click)="markAsUndone(todo)"> <i class="fas fa-check-circle"></i> Redo</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
-
-
-  <form [formGroup]="form">
-    <fieldset>
-      <label>Task: </label>
-      <input type="text" placeholder="Add a new task" maxlength="20" formControlName="todo">
-      <button [disabled]="form.invalid" (click)="add()"> Save </button>
-      <small *ngIf="form.controls['todo'].invalid && !form.controls['todo'].pristine"> Length should be between 3 and 20
-        characters</small>
-    </fieldset>
-  </form>
-
 
 </body>
 
