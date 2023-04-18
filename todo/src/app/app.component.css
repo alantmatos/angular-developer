@@ -101,6 +101,10 @@ label {
     padding: 5px;
 }
 
+input{
+    font-family: 'Nova Oval', cursive;
+}
+
 .input-list {
     display: flex;
     align-items: center;
