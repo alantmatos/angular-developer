@@ -3,7 +3,7 @@
 Creating an application using Angular and TypeScript, from fundamentals to application architecture and organization.
 
 <div>
-<img src="https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png" alt="Logo" >
+<img src="https://github.com/alantmatos/angular-developer/blob/main/images/cover.png?raw=true" alt="Home" width="600" height="400">
 </div>
 
 
@@ -58,13 +58,7 @@ Todo App is powered by:
 
 <div>
 <div>
-<img src="https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png" alt="Logo" >
-</div>
-<div>
-<img src="https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png" alt="Logo" >
-</div>
-<div>
-<img src="https://www.pngkey.com/png/detail/233-2332677_image-500580-placeholder-transparent.png" alt="Logo" >
+<img src="https://github.com/alantmatos/angular-developer/blob/main/images/tasks.png" alt="Logo" width="600" height="400" >
 </div>
 </div>
 
@@ -86,11 +80,4 @@ Alan
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Bugs and fixes 
-
-
-
-
-
-
-
+Bugs and fixes
