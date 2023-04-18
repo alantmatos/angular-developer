@@ -24,6 +24,29 @@ export class AppComponent {
         Validators.required
       ])]
     })
+    this.load();
+  }
+
+  clear() {
+    this.form.reset();
+  }
+
+  add() {
+    const newTodo = this.form.controls['todo'].value;
+    const id = this.todos.length + 1;
+    this.todos.push(new Todo(id, newTodo, false));
+    this.save();
+    this.clear();
+  }
+
+  save() {
+    const data = JSON.stringify(this.todos)
+    localStorage.setItem('todos', data);
+  }
+
+  load() {
+    const data = localStorage.getItem('todos');
+    this.todos = JSON.parse(localStorage.getItem('todos') || '[]');
   }
 
   remove(todo: Todo) {
@@ -31,17 +54,21 @@ export class AppComponent {
     if (index !== -1) {
       this.todos.splice(index, 1);
     }
+    this.save();
   }
 
   markAsDone(todo: Todo) {
     todo.done = true;
+    this.save();
   }
 
   markAsUndone(todo: Todo) {
     todo.done = false;
+    this.save();
   }
 
   rename(todo: Todo) {
-    todo.todo = " new name";
+    todo.todo = " TEST name";
+    this.save();
   }
 }
