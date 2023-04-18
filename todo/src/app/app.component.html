@@ -18,13 +18,22 @@
     <ul>
       <li *ngFor="let todo of todos">
         {{todo.id}}: {{todo.todo}}
-        <button> Remove </button> |
-        <button *ngIf="!todo.done"> Done </button>
-        <button *ngIf="todo.done"> Redo </button>
+        <button (click)="remove(todo)"> Remove </button> |
+        <button *ngIf="!todo.done" (click)="markAsDone(todo)"> Done </button>
+        <button *ngIf="todo.done" (click)="markAsUndone(todo)"> Redo </button> |
+        <button (click)="rename(todo)"> Rename </button>
       </li>
     </ul>
   </div>
 
+
+  <form [formGroup]="form">
+    <fieldset>
+      <label>Task: </label>
+      <input type="text" placeholder="Add a new task" maxlength="20" formControlName="todo">
+      <button> Save </button>
+    </fieldset>
+  </form>
 
 
 </body>

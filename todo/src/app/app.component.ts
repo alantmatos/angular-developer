@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Todo } from 'src/models/todo.model';
 
 @Component({
@@ -9,14 +10,38 @@ import { Todo } from 'src/models/todo.model';
 export class AppComponent {
   public title: String = 'My Tasks';
   public todos: Todo[] = [];
+  public form: FormGroup;
 
   /**
    *
    */
-  constructor() {
-    this.todos.push(new Todo(1, "Feed Dog", false));
-    this.todos.push(new Todo(2, "Gas", false));
-    this.todos.push(new Todo(3, "Groceries", false));
-    this.todos.push(new Todo(4, "Abe's gift", true));
+  constructor(private fb: FormBuilder) {
+
+    this.form = this.fb.group({
+      todo: ['', Validators.compose([
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.required
+      ])]
+    })
+  }
+
+  remove(todo: Todo) {
+    const index = this.todos.indexOf(todo);
+    if (index !== -1) {
+      this.todos.splice(index, 1);
+    }
+  }
+
+  markAsDone(todo: Todo) {
+    todo.done = true;
+  }
+
+  markAsUndone(todo: Todo) {
+    todo.done = false;
+  }
+
+  rename(todo: Todo) {
+    todo.todo = " new name";
   }
 }
